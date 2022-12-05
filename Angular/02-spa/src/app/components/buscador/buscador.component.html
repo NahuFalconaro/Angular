@@ -1,0 +1,10 @@
+<h1>Busco: <small>{{termino}}</small></h1>
+<hr>
+
+<h1 class="alert alert-info" *ngIf="(heroes.length == 0)">No hay resultados para su busqueda</h1>
+
+<div class="row">
+  <div class="col-3" *ngFor="let heroe of heroes;">
+    <app-heroe-tarjeta [heroe]="heroe" [index]="heroe.id"></app-heroe-tarjeta>
+  </div>
+</div>

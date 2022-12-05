@@ -1,0 +1,15 @@
+<div class="card mb-2">
+  <img [src]=heroe.img class="card-img-top" [alt]=heroe.nombre>
+  <div class="card-body">
+    <h5 class="card-title">{{ heroe.nombre}}</h5>
+    <p class="card-text">{{heroe.bio}} {{heroe.casa}} {{heroe.aparicion}}</p>
+    <div class="d-grid gap-2">
+      <!-- con el boton comun y sin routerLink, se genera un evento click, que en el archivo ts, invoca a Router
+      y hace un navigate, de la misma manera que funciona el routerLink, con un array -->
+      <button type="button" class="btn btn-outline-primary" (click)="verHeroe()">Ver mas...</button>
+      <!-- manera con routerLink, para que no se concatene la url, se pone /path, sin eso
+      quedaria, pathActual/heroe/i, ej: heroes/heroe/i, pero con barra queda /heroe/i -->
+      <!-- <a [routerLink]="['/heroe',i]"class="btn btn-outline-primary">Ver mas...</a> -->
+    </div>
+  </div>
+</div>
