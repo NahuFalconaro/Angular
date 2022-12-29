@@ -1,0 +1,128 @@
+<h4>Formularios <small> Reactivo </small></h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+  <div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+
+        <input class="form-control" type="text" placeholder="Nombre" formControlName="name"
+          [class.is-invalid]="nombreNoValido">
+        <!-- formControlName hace la relacion con el objeto quie tiene fb.group en archivo ts.
+               es decir el objeto que tiene forma de linea 3 en html -->
+        <small *ngIf="nombreNoValido" class="text-danger">Ingrese al menos 5 letras</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+
+        <input class="form-control" type="text" placeholder="Apellido" formControlName="lastname"
+          [class.is-invalid]="lastNameNoValido">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+
+      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="email"
+        [class.is-invalid]="emailNoValido">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Usuario</label>
+    <div class="col-8">
+
+      <input class="form-control" type="text" placeholder="Usuario" formControlName="usuario"
+        [class.is-invalid]="userNoValido">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password1</label>
+    <div class="col-8">
+      <input class="form-control" type="password" placeholder="Password" formControlName="password"
+      [class.is-invalid]="pass1noValido">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repeat</label>
+    <div class="col-8">
+      <input class="form-control" type="password" placeholder="Password" formControlName="password2"
+      [class.is-invalid]="pass2noValido">
+    </div>
+  </div>
+
+  <div class="form-group row" formGroupName="direccion">
+    <label class="col-2 col-form-label">Direccion</label>
+    <div class="form-row col">
+
+      <div class="col">
+        <input type="text" name="distrito" formControlName="distrito" class="form-control" [class.is-invalid]="distritoNoValido" placeholder="distrito" id="">
+      </div>
+
+      <div class="col">
+        <input type="text" name="ciudad" formControlName="ciudad" class="form-control" placeholder="ciudad" id="">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Pasatiempo</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="pasatiempos">
+          <tr *ngFor="let c of pasatiempos.controls; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              <input type="text" class="form-control:text" [formControlName]="i">
+              <!-- este formCOntrolName que lo maneja angular, y tiene una i, es asignarle el nombre o referencia
+              de cada input q se va creadno, es decir, angular crea la relacion -->
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deletePasatiempo(i)">Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button"  (click)="addPasatiempo()" class="btn btn-primary mt-3 mb-5">
+        Agregar +
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<hr>
+<pre>
+  Estado del formulario: {{forma.valid}}
+  <br>
+  status: {{forma.status}}
+</pre>
+
+<pre>
+  {{forma.value | json}}
+</pre>

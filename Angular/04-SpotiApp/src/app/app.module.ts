@@ -9,7 +9,11 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 //Rutas
 import { ROUTES } from './app.routes';
-
+import {HttpClientModule} from '@angular/common/http';
+import { NoimagePipe } from './pipes/noimage.pipe';
+import { CardsComponent } from './components/shared/cards/cards.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe'
 
 @NgModule({
   declarations: [
@@ -17,10 +21,15 @@ import { ROUTES } from './app.routes';
     HomeComponent,
     SearchComponent,
     ArtistComponent,
-    NavbarComponent
+    NavbarComponent,
+    NoimagePipe,
+    CardsComponent,
+    LoadingComponent,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   providers: [],

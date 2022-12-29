@@ -1,0 +1,44 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button color="tertiary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{lista.titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <ion-list color="dark">
+    <ion-item color="dark">
+      <ion-label>New Item</ion-label>
+      <ion-input type="text" [(ngModel)]="nombreItem" (keyUp.enter)="addItem()"></ion-input>
+      <!-- [()] -> escucha y envia un valor, no es necesario hacer @input, @output, en el ts de la clase
+      lo trabajas como si nada, ya que nombreItem esta definido en la clase ts -->
+    </ion-item>
+  </ion-list>
+
+  <ion-list color="dark">
+    <ion-list-header color="dark">
+      <ion-label *ngIf="lista.items.length > 0">
+        Tareas por hacer
+      </ion-label>
+      <ion-label *ngIf="lista.items.length == 0">
+        Sin elementos a mostrar
+      </ion-label>
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of lista?.items; let i = index" class="animated fadeInDown">
+      <ion-item color="dark">
+        <ion-checkbox slot="start" color="tertiary" [(ngModel)]="item.completado" (ionChange)="cambioCheck(item)">
+        </ion-checkbox>
+        <!-- el ngmodel escucha al atributo de la clase ts -->
+        <ion-label>{{item.descripcion}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteItem(i)" color="danger">
+          <ion-icon name="close" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,1 +1,19 @@
-<p>search works!</p>
+<app-loading *ngIf="loading" class="mt-5"></app-loading>
+<div class="row">
+  <div class="col">
+    <div class="d-grid gap-2">
+      <input type="text" name="" id="" class="form-control" (keyup)="buscar(termino.value)" #termino placeholder="Buscar artista">
+    </div>
+  </div>
+</div>
+<!-- <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div  *ngFor="let song of artist" class="col">
+    <div class="card">
+      <img [src]='song.images | noimage' class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ song.name }}</h5>
+      </div>
+    </div>
+  </div>
+</div> -->
+<app-cards *ngIf="!loading" [items]="artist"></app-cards>
